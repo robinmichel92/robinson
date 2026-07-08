@@ -1,0 +1,271 @@
+/* ============================================================
+   ROBINSON · portfolio ingénieur du son
+   Studio sombre éditorial · sœur visuelle de aireo.studio
+   ============================================================ */
+
+:root{
+  --bg:#0e1216;
+  --bg-2:#0b0f13;
+  --panel:#141a23;
+  --panel-2:#171e29;
+  --line:rgba(255,255,255,.09);
+  --line-2:rgba(255,255,255,.16);
+
+  --ink:#e9edef;
+  --ink-soft:#aab4bd;
+  --ink-mute:#6c7884;
+
+  --violet:#7c6cf0;
+  --violet-soft:#9a8df4;
+  --green:#34d3a6;
+  --green-soft:#5fe0bb;
+  --amber:#e6b24a;
+
+  --ease-out:cubic-bezier(.2,0,0,1);
+  --maxw:1120px;
+  --pad:clamp(20px,5vw,72px);
+
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important}}
+
+body{
+  margin:0;
+  position:relative;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.62;
+  font-size:clamp(16px,1.05vw,18px);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+em{font-style:normal;color:var(--green-soft)}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.03}
+::selection{background:color-mix(in srgb,var(--green) 32%,transparent);color:#fff}
+
+/* ---------- atmosphère ---------- */
+.grain{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  mix-blend-mode:soft-light;
+}
+.aura{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:var(--bg)}
+.ax{position:absolute;border-radius:50%;mix-blend-mode:screen;filter:blur(80px);will-change:transform;
+  background:radial-gradient(circle,color-mix(in srgb,var(--_c) 20%,transparent) 0%,transparent 66%)}
+.ax1{--_c:var(--green);top:-18%;left:-8%;width:70vw;height:70vh;animation:driftA 34s var(--ease-out) infinite}
+.ax2{--_c:var(--violet);top:-6%;right:-10%;width:60vw;height:64vh;animation:driftB 40s var(--ease-out) -10s infinite}
+.ax3{--_c:var(--green);top:46%;left:-10%;width:58vw;height:60vh;animation:driftB 44s var(--ease-out) -6s infinite}
+.ax4{--_c:var(--violet);bottom:-16%;right:-6%;width:64vw;height:64vh;animation:driftA 48s var(--ease-out) -20s infinite}
+@keyframes driftA{0%,100%{transform:translate(0,0)}50%{transform:translate(6%,4%)}}
+@keyframes driftB{0%,100%{transform:translate(0,0)}50%{transform:translate(-5%,5%)}}
+
+/* ---------- layout ---------- */
+main{position:relative;z-index:2}
+section{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  max-width:var(--maxw);margin:0 auto;
+  padding:16px var(--pad);
+  backdrop-filter:blur(14px);
+  background:linear-gradient(to bottom,rgba(14,18,22,.82),rgba(14,18,22,.35));
+  border-bottom:1px solid var(--line);
+}
+.brand{display:flex;flex-direction:column;line-height:1.1}
+.brand-name{font-weight:800;letter-spacing:.14em;font-size:15px}
+.brand-sub{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--ink-mute);margin-top:3px}
+.nav-links{display:flex;align-items:center;gap:clamp(14px,2.2vw,30px)}
+.nav-links a{font-size:14.5px;color:var(--ink-soft);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.pill{
+  padding:8px 15px;border-radius:999px;
+  border:1px solid var(--line-2);
+  color:var(--ink)!important;font-weight:600;font-size:13.5px!important;
+  transition:border-color .2s,background .2s;
+}
+.pill:hover{border-color:var(--violet-soft);background:color-mix(in srgb,var(--violet) 16%,transparent)}
+
+/* ---------- hero ---------- */
+.hero{padding-top:clamp(60px,12vh,130px);padding-bottom:clamp(48px,9vh,96px)}
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--green-soft);margin:0 0 22px;
+}
+.hero-title{font-size:clamp(38px,7.2vw,86px);letter-spacing:-.035em}
+.hero-lead{
+  margin:26px 0 0;max-width:56ch;
+  font-size:clamp(17px,1.5vw,21px);color:var(--ink-soft);
+}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 24px;border-radius:12px;font-weight:600;font-size:15px;
+  transition:transform .2s var(--ease-out),background .2s,border-color .2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--green);color:#04150f}
+.btn-primary:hover{background:var(--green-soft)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink-soft)}
+.clients{
+  list-style:none;display:flex;flex-wrap:wrap;gap:10px 28px;
+  margin:52px 0 0;padding:26px 0 0;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--ink-mute);
+}
+
+/* ---------- entêtes de section ---------- */
+.section-head{margin-bottom:clamp(28px,4vw,44px)}
+.kicker{
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-mute);margin:0 0 14px;
+}
+.section-head h2,.contact-title{font-size:clamp(26px,4vw,44px)}
+
+/* ---------- réalisations ---------- */
+.work{padding-block:clamp(56px,10vh,110px)}
+.feat-label{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--green-soft);margin:0 0 16px}
+.feat-all{color:var(--ink-mute);margin-top:52px}
+
+/* bande "À la une" : grandes cartes, légende toujours visible */
+.featured{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.feat{position:relative;border-radius:16px;overflow:hidden;cursor:pointer;
+  border:1px solid var(--line-2);background:var(--panel);
+  transition:transform .25s var(--ease-out),border-color .25s}
+.feat:hover{transform:translateY(-4px);border-color:var(--green)}
+.feat img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.feat figcaption{padding:13px 15px 15px;display:flex;flex-direction:column;gap:4px}
+.feat .c-title{font-size:16px}
+@media (max-width:560px){.featured{grid-template-columns:1fr 1fr;gap:11px}.feat .c-title{font-size:14px}}
+
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.chip{
+  font-family:var(--sans);font-size:13.5px;font-weight:500;cursor:pointer;
+  padding:8px 16px;border-radius:999px;
+  background:transparent;border:1px solid var(--line);color:var(--ink-soft);
+  transition:border-color .2s,color .2s,background .2s;
+}
+.chip:hover{border-color:var(--line-2);color:var(--ink)}
+.chip.is-on{background:var(--ink);border-color:var(--ink);color:#0b0f13;font-weight:600}
+.chip-n{font-family:var(--mono);font-size:11px;opacity:.6;margin-left:2px}
+
+/* grille masonry : chaque affiche garde son ratio naturel */
+.grid{columns:4 220px;column-gap:14px}
+@media (max-width:900px){.grid{columns:3 180px}}
+@media (max-width:560px){.grid{columns:2 150px}}
+.card{
+  break-inside:avoid;margin:0 0 14px;cursor:pointer;position:relative;
+  border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  background:var(--panel);display:block;
+  transition:transform .25s var(--ease-out),border-color .25s;
+}
+.card:hover{transform:translateY(-4px);border-color:var(--line-2)}
+.card img{display:block;width:100%;height:auto}
+.card figcaption{
+  position:absolute;inset:auto 0 0 0;padding:26px 12px 11px;
+  display:flex;flex-direction:column;gap:3px;
+  background:linear-gradient(to top,rgba(9,12,16,.92) 12%,rgba(9,12,16,.55) 60%,transparent);
+  opacity:0;transform:translateY(8px);transition:opacity .22s,transform .22s;
+}
+.card:hover figcaption,.card:focus-within figcaption{opacity:1;transform:none}
+.c-title{font-weight:700;font-size:14.5px;line-height:1.2;letter-spacing:-.01em}
+.c-net{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+a.c-net{transition:color .2s}
+a.c-net:hover{color:var(--green-soft)}
+.tag{
+  align-self:flex-start;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  padding:3px 8px;border-radius:999px;margin-bottom:3px;
+}
+.tag-v{color:var(--violet-soft);background:color-mix(in srgb,var(--violet) 22%,transparent)}
+.tag-g{color:var(--green-soft);background:color-mix(in srgb,var(--green) 20%,transparent)}
+.tag-o{color:var(--amber);background:color-mix(in srgb,var(--amber) 22%,transparent)}
+.tag-p{color:#e88fb8;background:color-mix(in srgb,#e88fb8 22%,transparent)}
+.tag-b{color:#6cc0f0;background:color-mix(in srgb,#6cc0f0 22%,transparent)}
+.tag-r{color:#f0846c;background:color-mix(in srgb,#f0846c 22%,transparent)}
+.work-note{margin:26px 0 0;font-size:14px;color:var(--ink-mute)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:50;display:none;place-items:center;
+  background:rgba(6,9,12,.92);backdrop-filter:blur(6px);padding:5vw;cursor:zoom-out}
+.lb.on{display:grid}
+.lb img{max-width:min(90vw,900px);max-height:82vh;border-radius:12px;border:1px solid var(--line-2)}
+.lb-cap,#lb-cap{margin:16px 0 0;font-weight:600;color:var(--ink);text-align:center}
+.lb-close{position:fixed;top:18px;right:22px;background:none;border:0;color:var(--ink);
+  font-size:26px;cursor:pointer;line-height:1;opacity:.8}
+.lb-close:hover{opacity:1}
+
+/* ---------- clients & diffuseurs ---------- */
+.clients-sec{padding-block:clamp(48px,8vh,90px)}
+.clients-grid{display:grid;gap:10px;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.client{display:flex;align-items:center;justify-content:center;
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:22px 18px;min-height:96px}
+.client img{max-width:100%;max-height:52px;width:auto;height:auto;object-fit:contain;
+  opacity:.72;filter:grayscale(1) brightness(1.6);transition:opacity .25s,filter .25s}
+.client:hover img{opacity:1;filter:none}
+
+/* ---------- à propos ---------- */
+.about{padding-block:clamp(56px,10vh,110px)}
+.about-grid{display:grid;gap:clamp(28px,5vw,64px);grid-template-columns:1.6fr 1fr;align-items:start}
+.about-text p{margin:0 0 18px;color:var(--ink-soft);max-width:60ch}
+.about-aireo{font-size:15px}
+.about-aireo a{color:var(--green-soft);border-bottom:1px solid color-mix(in srgb,var(--green) 45%,transparent)}
+.about-aireo a:hover{color:var(--green)}
+.services{list-style:none;margin:0;padding:0;display:grid;gap:1px;
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--line)}
+.services li{background:var(--panel);padding:14px 18px;font-size:15px;font-weight:500}
+
+/* ---------- contact ---------- */
+.contact{padding-block:clamp(60px,11vh,120px);text-align:center}
+.contact-links{display:flex;flex-direction:column;gap:8px;margin-top:26px;align-items:center}
+.contact-big{
+  font-size:clamp(20px,3.4vw,34px);font-weight:700;letter-spacing:-.02em;
+  color:var(--ink);border-bottom:1px solid transparent;transition:color .2s,border-color .2s;
+}
+.contact-big:hover{color:var(--green-soft);border-color:color-mix(in srgb,var(--green) 45%,transparent)}
+
+/* ---------- footer ---------- */
+.foot{
+  position:relative;z-index:2;
+  max-width:var(--maxw);margin:0 auto;
+  padding:30px var(--pad) 46px;
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;
+  border-top:1px solid var(--line);
+  font-size:13.5px;color:var(--ink-mute);
+}
+.foot a{color:var(--ink-soft)}
+.foot a:hover{color:var(--green-soft)}
+
+/* ---------- pages légales ---------- */
+.legal{max-width:760px;margin:0 auto;padding:clamp(48px,10vh,110px) var(--pad) 60px;position:relative;z-index:2}
+.legal h1{font-size:clamp(30px,5vw,48px);margin:8px 0 8px}
+.legal-block{margin-top:32px;border-top:1px solid var(--line);padding-top:24px}
+.legal-block h2{font-size:19px;font-weight:700;margin-bottom:10px}
+.legal-block p{margin:0;color:var(--ink-soft)}
+.legal a{color:var(--green-soft);border-bottom:1px solid color-mix(in srgb,var(--green) 40%,transparent)}
+.legal a:hover{color:var(--green)}
+.legal-hint{color:var(--ink-mute);font-size:14px}
+.legal-updated{margin-top:36px;font-family:var(--mono);font-size:12px;color:var(--ink-mute)}
+.foot-legal{display:flex;gap:18px}
+
+/* ---------- responsive ---------- */
+@media (max-width:720px){
+  .brand-sub{display:none}
+  .nav{padding-inline:18px}
+  .nav-links{gap:13px}
+  .nav-links a{font-size:13px}
+  .about-grid{grid-template-columns:1fr}
+}
+@media (max-width:440px){
+  .nav-links a:not(.pill){display:none}  /* trop étroit : on garde le logo + Aireo, ancres accessibles au scroll */
+}
